@@ -6,5 +6,9 @@ from flask import render_template
 def index():
     return render_template('index.html')
 
+# @app.route('/static/<name>')
+# def root(name):
+#     return app.send_static_file(name)
+
 if __name__ == '__main__':
     app.run()
