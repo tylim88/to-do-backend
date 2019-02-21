@@ -1,0 +1,11 @@
+flask
+flask_sqlalchemy
+flask_migrate
+flask_bcrypt
+flask_dance
+flask_restful
+flask_jwt_extended
+flask_validator
+flask_cors
+validator
+requests
