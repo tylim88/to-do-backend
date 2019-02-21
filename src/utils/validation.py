@@ -11,7 +11,7 @@ def validateUsername(username):
         abort(400, message='name must be longer than 3 characters')
     elif not username[0].isalpha():
         abort(400, message='name must start with alphabet')
-    elif any(char in invalidChars for char in username):
+    elif any(char in invalidChars for char in username) or ' ' in username:
         abort(400, message='invalid character')
     elif len(username) > 20:
         abort(400, message='name must be shorter than 20 characters')
