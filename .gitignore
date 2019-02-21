@@ -21,6 +21,9 @@
 /migrations
 *data.sqlite*
 
+# template
+/src/templates
+
 # misc
 .DS_Store
 .env.local
