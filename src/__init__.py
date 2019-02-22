@@ -8,8 +8,10 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 
 # connect flask to database, these tell flask where to look for files
-# css and js can put in non static folder
-app = Flask(__name__,template_folder='build',static_folder='build/static')
+# template folder define html path(relative to this script)
+# static folder define file path(relative to this script)
+# static url path define the url path
+app = Flask(__name__,template_folder='build',static_url_path='/static',static_folder='build/static')
 
 # create cors instance
 CORS(app)
