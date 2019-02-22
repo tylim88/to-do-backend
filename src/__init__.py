@@ -1,4 +1,4 @@
-import os, logging
+import os
 from os import environ
 from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
@@ -6,6 +6,8 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
+from flask_compress import Compress
+from flask_caching import Cache
 
 # connect flask to database, these tell flask where to look for files
 # template folder define html path(relative to this script)
@@ -13,8 +15,13 @@ from flask_cors import CORS
 # static url path define the url path
 app = Flask(__name__,template_folder='build',static_url_path='/static',static_folder='build/static')
 
+# create gzip instances
+compress = Compress(app)
 # create cors instance
 CORS(app)
+# create cache instance
+cache = Cache(app,config={'CACHE_TYPE': 'simple'})
+
 # read configuration from file
 app.config.from_object(environ.get('ENV_PATH'))
 
@@ -36,4 +43,3 @@ jwt = JWTManager(app)
 
 # from folder/package/module import module/function
 from src import models, routes, api
-logging.getLogger('flask_cors').level = logging.DEBUG
