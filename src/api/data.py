@@ -12,7 +12,7 @@ parser1.add_argument('state', help = 'This field cannot be blank', required = Tr
 class updateItems(Resource):
 
     @jwt_required
-    def post(self):
+    def put(self):
 
         try:
             data = parser1.parse_args()
