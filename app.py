@@ -11,6 +11,10 @@ def worker():
     # the directory path is relative to path where app is created
     return send_from_directory('build','service-worker.js')
 
+@app.route('/images/<path>/<name>')
+def images(path,name):
+    return send_from_directory('build/images/'+path, name)
+
 @app.route('/<name>')
 def others(name):
     return send_from_directory('build',name)
