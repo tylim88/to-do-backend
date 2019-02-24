@@ -20,7 +20,7 @@ app = Flask(__name__,template_folder='build',static_url_path='/static',static_fo
 # create gzip instances
 compress = Compress(app)
 # create cors instance
-cors = cors = CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:5000/"}})
+cors = cors = CORS(app, resources={r"/api/*": {"origins": "https://flask.tylim.com/"}})
 # create cache instance
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 # create secure header instances
@@ -32,6 +32,9 @@ csp = {
     '\'unsafe-inline\'']# https://stackoverflow.com/questions/45366744/refused-to-load-the-font-datafont-woff-it-violates-the-following-content/50504870
 }
 talisman = Talisman(app, content_security_policy=csp)
+
+# create seasurf instances
+csrf = SeaSurf(app)
 
 # read configuration from file
 app.config.from_object(environ.get('ENV_PATH'))
