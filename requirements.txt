@@ -9,5 +9,7 @@ flask_validator
 flask_cors
 flask-caching
 flask_compress
+flask_talisman
+flask-seasurf
 validators
 requests
