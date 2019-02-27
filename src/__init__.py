@@ -8,8 +8,8 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from flask_compress import Compress
 from flask_caching import Cache
-from flask_talisman import Talisman
-from flask_seasurf import SeaSurf
+# from flask_talisman import Talisman
+# from flask_seasurf import SeaSurf
 
 # connect flask to database, these tell flask where to look for files
 # template folder define html path(relative to this script)
@@ -20,21 +20,22 @@ app = Flask(__name__,template_folder='build',static_url_path='/static',static_fo
 # create gzip instances
 compress = Compress(app)
 # create cors instance
-cors = cors = CORS(app, resources={r"/api/*": {"origins": 'https://flask.tylim.com/'}})
+# cors = CORS(app, resources={r"/api/*": {"origins": ['https://flask.tylim.com/','http://localhost:3000']}})
+cors = CORS(app)
 # create cache instance
 cache = Cache(app,config={'CACHE_TYPE': 'simple'})
 # create secure header instances
-csp = {
-    'default-src': ['\'self\'','https://flask.tylim.com/'],
-    'style-src':['\'self\'','https://*.bootstrapcdn.com','\'unsafe-inline\'','https://flask.tylim.com/'],
-    'font-src': ['\'self\'','data:','https://flask.tylim.com/'],
-    'script-src':['\'self\'','https://flask.tylim.com/',
-    '\'unsafe-inline\'']# https://stackoverflow.com/questions/45366744/refused-to-load-the-font-datafont-woff-it-violates-the-following-content/50504870
-}
-talisman = Talisman(app, content_security_policy=csp)
+# csp = {
+#     'default-src': ['\'self\'','https://flask.tylim.com/'],
+#     'style-src':['\'self\'','https://*.bootstrapcdn.com','\'unsafe-inline\'','https://flask.tylim.com/'],
+#     'font-src': ['\'self\'','data:','https://flask.tylim.com/'],
+#     'script-src':['\'self\'','https://flask.tylim.com/',
+#     '\'unsafe-inline\'']# https://stackoverflow.com/questions/45366744/refused-to-load-the-font-datafont-woff-it-violates-the-following-content/50504870
+# }
+# talisman = Talisman(app, content_security_policy=csp)
 
 # create seasurf instances
-csrf = SeaSurf(app)
+# csrf = SeaSurf(app)
 
 # read configuration from file
 app.config.from_object(environ.get('ENV_PATH'))
